@@ -12,11 +12,11 @@ nfile = max(size(a)) ;                                                      %tak
 [~, reindex] = sort( str2double( regexp( {a.name}, '\d+', 'match', 'once' ))); %reorder to natural numbering
 a = a(reindex);
 
-%%%% Get first file and select points
+%%%% Get first file and select points0
 img1 = imread([path filename]);
 %img1 = imadjust(img1,[0.1;0.6],[0;1]);
 ROISize = 40;
-NumPoints = 50;
+NumPoints = 49;
 TrackPoints = SelectNPoints(img1,ROISize,NumPoints,1);
 close all
 %%%%

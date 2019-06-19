@@ -10,14 +10,14 @@ path;
 LoadDisplacements = 0;      %Switch
 RemPoints = 0;              %Switch
 IgnoreTransform = 0;        %Switch
-MakeVideo = 0;              %Switch
+MakeVideo = 1;              %Switch
 MakePlots = 1;              %Switch
 SaveDisplacements = 1;      %Switch
 
 if LoadDisplacements
     load(sprintf('%sDisplacementData.mat',path));  %load previously calculated
 elseif ~LoadDisplacements
-    steps_bk = steps;
+%     steps_bk = steps;
     StepsPerPt = [];
     filt_steps = [];
     for i = 1:size(steps_bk,1)
@@ -34,7 +34,7 @@ RemovePoints = [1;2;3;4]; %Points must be in order!
 if RemPoints   
     StepsPerPtB = StepsPerPt;
     filt_stepsB = filt_steps;
-    for i = 1:length(RemovePoints);
+    for i = 1:length(RemovePoints)
         RmPt = RemovePoints(i) - (i-1);  %Compensates for for removed points
         StepsPerPtR = RemColumn(StepsPerPt,RmPt*2); %remove Y component
         StepsPerPtR = RemColumn(StepsPerPtR,RmPt*2-1); %remove X component
@@ -83,8 +83,10 @@ if MakeVideo
             imshow(file_name);
             hold on;
             for u = 1:2:size(filt_steps,2)
-           % plot(filt_steps(i,u),filt_steps(i,u+1),'.','Color',clr(mod(u,5)+1))
-           % colmod = sqrt(filt_steps(i,u)-trans_orig_steps(1,u))^2+ (filt_steps(i,u+1)-trans_orig_steps(1,u+1))^2)/
+%            plot(filt_steps(i,u),filt_steps(i,u+1),'.','Color',clr(mod(u,5)+1))
+%            colmod = sqrt(filt_steps(i,u)-trans_orig_steps(1,u))^2 + (filt_steps(i,u+1)-trans_orig_steps(1,u+1))^2)
+                       GoodArrow(trans_orig_steps(i,u),trans_orig_steps(i,u+1),filt_steps(i,u), filt_steps(i,u+1),ColScale(0,70,Rs(i,(u+1/2))));
+
             quiver(trans_orig_steps(i,u), trans_orig_steps(i,u+1), filt_steps(i,u)-trans_orig_steps(1,u), filt_steps(i,u+1)-trans_orig_steps(1,u+1),2,'Color',[0 1 0]);  %draw arrow from original point to new point. Original point shifted with frame-wise transform.
             hold on;
             end
