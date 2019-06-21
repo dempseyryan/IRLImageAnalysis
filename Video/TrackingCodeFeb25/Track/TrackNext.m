@@ -4,13 +4,14 @@ function NewPoints = TrackNext(img,ROIsize,TrackPoints)
 %   points selected previously.
 %%%%%%%Faster to crop image in here, then send to estimate centroid?
 MaxTravel = 10;
+NewPoints = zeros(size(TrackPoints, 1), 2); % pre-sizing to drastically increase computation speed
 for i = 1:size(TrackPoints,1)           %for each point in the list of points to track
-    [px py] = EstimateCentroid(TrackPoints(i,1),TrackPoints(i,2),ROIsize,ROIsize,img);
+    [px, py] = EstimateCentroid(TrackPoints(i,1),TrackPoints(i,2),ROIsize,ROIsize,img);
     b=0;
     while (px == 0) && (py == 0) && b<3   %if the point can't be found, increase the ROI and search again
         ROIsize = ROIsize+5;
         b=b+1;
-        [px py] = EstimateCentroid(TrackPoints(i,1),TrackPoints(i,2),ROIsize,ROIsize,img,b);
+        [px, py] = EstimateCentroid(TrackPoints(i,1),TrackPoints(i,2),ROIsize,ROIsize,img,b);
         fprintf('Can''t find point #%s. Trying again.\n',num2str(i));
     end
     
@@ -30,7 +31,7 @@ for i = 1:size(TrackPoints,1)           %for each point in the list of points to
          str = sprintf('Draw an ROI around point # %s.\n',num2str(i));
          userCent2 = figure(3);
          userCent2.WindowState = 'maximized';
-         [cpx cpy cpl cph] = Helper(TrackPoints,img,ROIsize,i);
+         [cpx, cpy, cpl, cph] = Helper(TrackPoints,img,ROIsize,i);
          title(str);
          rect = getrect(userCent2);
          px = rect(1)+0.5*(rect(3))+cpx;%+NewPoints(i,1)-25;
