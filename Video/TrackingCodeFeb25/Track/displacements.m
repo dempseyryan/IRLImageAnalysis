@@ -7,7 +7,7 @@ StartFrame = find(strcmp({a.name}, filename)==1);
 
 path;
 
-LoadDisplacements = 0;      %Switch
+LoadDisplacements = 1;      %Switch
 RemPoints = 0;              %Switch
 IgnoreTransform = 0;        %Switch
 MakeVideo = 1;              %Switch
