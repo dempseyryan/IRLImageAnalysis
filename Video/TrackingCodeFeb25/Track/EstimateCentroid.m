@@ -27,8 +27,8 @@ if points.Count ~=0
         pause(0.01);
         centx = sum(wcentx)+cx-wx/2;
         centy = sum(wcenty)+cy-wy/2;
-        centx = double(round(centx));
-        centy = double(round(centy));
+      %  centx = double(round(centx));
+      %  centy = double(round(centy));
         return
     end
 end
@@ -57,6 +57,6 @@ elseif points.Count ~=0 %%otherwise, continue
 end
     centx = sum(wcentx)+cx-wx/2;
     centy = sum(wcenty)+cy-wy/2;
-    centx = double(round(centx));
-    centy = double(round(centy));
+ %   centx = double(round(centx));
+ %   centy = double(round(centy));
 end
