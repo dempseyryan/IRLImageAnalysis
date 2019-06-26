@@ -27,7 +27,6 @@ for i = 1:size(TrackPoints,1)           %for each point in the list of points to
          if (sqrt(((abs(TrackPoints(i,1)-px))^2 + (abs(TrackPoints(i,2)-py))^2))>MaxTravel) && ~(px == 0) &&~(py ==0)
              fprintf('Max travel reached: %s.\n',num2str(sqrt(((abs(TrackPoints(i,1)-px))^2 + (abs(TrackPoints(i,2)-py))^2))));
          end
-         
          str = sprintf('Draw an ROI around point # %s.\n',num2str(i));
          userCent2 = figure(3);
          userCent2.WindowState = 'maximized';
@@ -38,6 +37,12 @@ for i = 1:size(TrackPoints,1)           %for each point in the list of points to
          py = rect(2)+0.5*(rect(4))+cpy;%+NewPoints(i,2)-25;
          %fprintf('Point: X: %s Y: %s\n',num2str(px),num2str(py));
          userCent2.delete;
+         answer = questdlg('Would you like to delete this point?');
+           if strcmp(answer,'Yes') == 1 
+                px = Inf;
+                py = Inf;
+           end
+        
      end
    NewPoints(i,:) = [px py];
 end
