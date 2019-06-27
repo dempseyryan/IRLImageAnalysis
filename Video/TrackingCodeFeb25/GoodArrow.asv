@@ -38,7 +38,7 @@ B=0.25*R;
 A=B*tand(angT);
 
 %Finding unknown points T1 and T2
-Tx1=Cx-A*cosd(90-angA);%angA is always 0. not sure why
+Tx1=Cx-A*cosd(90-angA);%angA is always 0
 Ty1=Cy+A*sind(90-angA);
 
 Tx2=Cx+A*sind(angA);
