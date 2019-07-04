@@ -37,8 +37,8 @@ for i = 1:size(TrackPoints,1)           %for each point in the list of points to
          py = rect(2)+0.5*(rect(4))+cpy;%+NewPoints(i,2)-25;
          %fprintf('Point: X: %s Y: %s\n',num2str(px),num2str(py));
          userCent2.delete;
-         default = 'No';
-         answer = questdlg('Would you like to delete this point?', 'Ignore bad pt?', 'Yes', 'No', default);
+        % if the point is very troublesome, perhaps ignore it going forward
+         answer = questdlg('Would you like to delete this point?', 'Ignore bad pt?', 'Yes', 'No', 'No');
            if strcmp(answer,'Yes') == 1 
                 px = Inf;
                 py = Inf;
