@@ -1,4 +1,4 @@
-function NewPoints = TrackNext(img,ROIsize,TrackPoints)
+function NewPoints = TrackNext(img,ROIsize,TrackPoints,remPoints)
 %TrackNext Tracks points selected in SelectPoints for a different image
 %   TrackNext(img,TrackPoints). img: image to find points in, TrackPoints:
 %   points selected previously.
@@ -38,11 +38,13 @@ for i = 1:size(TrackPoints,1)           %for each point in the list of points to
          %fprintf('Point: X: %s Y: %s\n',num2str(px),num2str(py));
          userCent2.delete;
         % if the point is very troublesome, perhaps ignore it going forward
+        if remPoints == true
          answer = questdlg('Would you like to delete this point?', 'Ignore bad pt?', 'Yes', 'No', 'No');
            if strcmp(answer,'Yes') == 1 
                 px = Inf;
                 py = Inf;
            end
+        end
         
      end
    NewPoints(i,:) = [px py];
