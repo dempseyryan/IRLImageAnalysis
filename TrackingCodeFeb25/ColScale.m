@@ -2,6 +2,7 @@ function [col] = ColScale(min,max,length)
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
 span = max - min;
+midpoint = (max + min)/2;
 P1 = min;
 P2 = span/2;
 P3 = max;
@@ -20,14 +21,14 @@ yG2 = 2;
 mR = 1/P2;
 yR = -1;
 
-if length > P2
-    R = mR*length+yR;%if its greater than the midpoint, scale to red side
-    G = mG2*length+yG2;
+if length > midpoint
+    R = mR*(length - P1) +yR;%if its greater than the midpoint, scale to red side
+    G = mG2*(length - P1) +yG2;
     B = 0;
-elseif length <= P2
+elseif length <= midpoint
     R = 0;
-    G = mG1*length+yG1;
-    B = mB*length+yB;
+    G = mG1*(length - P1) +yG1;
+    B = mB*(length - P1)+yB;
 end
 if span == 0
     B = 1;
