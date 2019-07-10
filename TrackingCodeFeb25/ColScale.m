@@ -1,6 +1,15 @@
 function [col] = ColScale(min,max,length)
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
+if length > max
+   errordlg('The length is greater than the maximum.', 'Error');
+   return;
+end
+
+if length < min
+   errordlg('The length is less than the minimum.', 'Error');
+   return;
+end
 span = max - min;
 midpoint = (max + min)/2;
 P1 = min;
