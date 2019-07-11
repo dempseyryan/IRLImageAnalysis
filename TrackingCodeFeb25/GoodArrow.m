@@ -15,19 +15,23 @@ will draw an arrowhead
 %when dilating arrow size, always use xt1,yt1, because xt2,yt2 is the pt 
 %that the head is on, therefore shouldnt be changed
 if dilation ~= 0 
-   dilation = dilation + 1;  %dilation is a fraction, must add 1 to scale
-   if yt1 > yt2  %if first y comp't is larger, increase it relative to origin (to increase distance btwn y1 & y2)
-         yt1 = yt1*dilation;
-%        yt2 = yt2/1.05;
-   else
-       yt1 = yt1/dilation;  %if second y is greater, move it closer to the origin
-   end
-   if xt1 > xt2     %x's follow same logic
-       xt1 = xt1*dilation;
-%      xt2 = xt2/1.05;
-   else
-       xt1 = xt1/dilation;
-   end
+   % dilation = dilation + 1;  %dilation is a fraction, must add 1 to sc
+    d1 = xt1 - xt2;
+    d2 = yt1 - yt2;
+    xt1 = xt1 + dilation*d1;
+    yt1 = yt1 + dilation*d2;
+%    if yt1 > yt2  %if first y comp't is larger, increase it relative to origin (to increase distance btwn y1 & y2)
+%          yt1 = yt1*dilation;
+% %        yt2 = yt2/1.05;
+%    else
+%        yt1 = yt1/dilation;  %if second y is greater, move it closer to the origin
+%    end
+%    if xt1 > xt2     %x's follow same logic
+%        xt1 = xt1*dilation;
+% %      xt2 = xt2/1.05;
+%    else
+%        xt1 = xt1/dilation;
+%    end
 end
 angAt = atan((yt2-yt1)/(xt2-xt1));
 angT = 30;
