@@ -8,14 +8,8 @@ will draw an arrowhead
 %}
 
 
-%if adjusting arrow size -- used for arrow scale by frame 
-%(since per frame displacement is typically tiny)
 
-
-%when dilating arrow size, always use xt1,yt1, because xt2,yt2 is the pt 
-%that the head is on, therefore shouldnt be changed
 if dilation ~= 0 
-   % dilation = dilation + 1;  %dilation is a fraction, must add 1 to sc
     d1 = xt1 - xt2;
     d2 = yt1 - yt2;
     xt1 = xt1 + dilation*d1;
