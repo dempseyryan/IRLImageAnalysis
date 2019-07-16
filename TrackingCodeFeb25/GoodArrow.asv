@@ -6,9 +6,10 @@ will draw an arrowhead
    xt1, yt1: coordinates for first point
    xt2, yt2: coordinates for second point
 %}
-if ~isfinite(xt1) || ~isfinite(yt1) || ~isfinite(xt2) || ~isfinite(yt2) || ~isfinite(max(col))
+if xt1 == inf || yt1 == inf || xt2 == inf || yt2 == inf || col == inf
     return
 end
+
 if dilation ~= 0 
     d1 = xt1 - xt2;
     d2 = yt1 - yt2;

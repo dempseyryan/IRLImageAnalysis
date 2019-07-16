@@ -1,6 +1,10 @@
 function [col] = ColScale(min,max,length)
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
+if length == inf
+  col = inf;
+  return
+end
 if length > max
    errordlg('The length is greater than the maximum.', 'Error');
    return;
