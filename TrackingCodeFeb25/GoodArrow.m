@@ -6,9 +6,13 @@ will draw an arrowhead
    xt1, yt1: coordinates for first point
    xt2, yt2: coordinates for second point
 %}
-if ~isfinite(xt1) || ~isfinite(yt1) || ~isfinite(xt2) || ~isfinite(yt2) || ~isfinite(max(col))
+%if given an infinity, return
+if ~isfinite(xt1) || ~isfinite(yt1) || ~isfinite(xt2) || ~isfinite(yt2) || ~isfinite(max(col)) 
     return
 end
+
+%if there is a dilation, put the arrow end point that times further along
+%the same vector
 if dilation ~= 0 
     d1 = xt1 - xt2;
     d2 = yt1 - yt2;

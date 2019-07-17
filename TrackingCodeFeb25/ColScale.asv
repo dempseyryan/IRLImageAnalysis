@@ -40,8 +40,7 @@ mR = 1/P2;
 yR = -1;
 
 %drawing 4 lines, piecewise, to represent the 3 colours (piecewise because
-%you only look at blue and green before the midpoint and green and red
-%after the midpoint)
+%you only look at blue and green before the midpoint and green and red aft
 if length > midpoint
     R = mR*(length - P1) +yR;%if its greater than the midpoint, scale to red side
     G = mG2*(length - P1) +yG2;
