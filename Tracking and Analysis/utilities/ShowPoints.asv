@@ -22,16 +22,8 @@ for i = 1:size(PrevPts,1)
         col = 'red';
     end
 if isfinite(x) && isfinite(y)
-    if x-0.5*ROIsize < 0
-        offsetx = 0;
-    else offsetx = x-0.5*ROIsize;
-    end
-    if y-0.5*ROIsize < 0
-        offsety = 0;
-    else offsety = y-0.5*ROIsize;
-    end
-    rectangle('Position',[offsetx offsety ROIsize ROIsize], 'EdgeColor',col);
+    rectangle('Position',[x-0.5*ROIsize y-0.5*ROIsize ROIsize ROIsize], 'EdgeColor',col);
     t = sprintf('%s',num2str(i));
-    text(offsetx,offsety,t,'Color',col,'FontSize',ROIsize/2);  %give point a number
+    text(x-ROIsize*0.5,y-ROIsize*0.5,t,'Color',col,'FontSize',ROIsize/1);  %give point a number
 end
 end

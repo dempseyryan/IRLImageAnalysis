@@ -1,16 +1,19 @@
-function [Tx,Ty] = GoodArrow(xt1,yt1,xt2,yt2,col,dilation)
+function [line1, line2, line3] = GoodArrow(xt1,yt1,xt2,yt2,col,dilation)
 %{
-GoodArrow Takes in two points and returns X and Y coordinates of the
-arrowhead tails. Connecting the result to the second point of the input
-will draw an arrowhead
+GoodArrow Takes in two points and returns the handles to the
+arrowheads and tail, for the arrow drawn from the first point to the second. 
    xt1, yt1: coordinates for first point
    xt2, yt2: coordinates for second point
 %}
 %if given an infinity, return
 if ~isfinite(xt1) || ~isfinite(yt1) || ~isfinite(xt2) || ~isfinite(yt2) || ~isfinite(max(col)) 
+
+    line1 = 0;%if infinity make the supposed handles scalars 
+    line2 = 0;%to signify arrow not drawn
+    line3 = 0;
     return
 end
-
+ %trajectory was continued
 %if there is a dilation, put the arrow end point that times further along
 %the same vector
 if dilation ~= 0 
@@ -72,8 +75,8 @@ tf= [cos(angAt) sin(angAt) 0;
 Tx = Tx+xt1;
 Ty = Ty+yt1;
 
-line([Tx(1) xt2],[Ty(1) yt2],'Color',col)%head
-line([Tx(2) xt2],[Ty(2) yt2],'Color',col)%head
-line([xt1 xt2],[yt1 yt2],'Color',col)%shaft
+line1 = line([Tx(1) xt2],[Ty(1) yt2],'Color',col);%head
+line2 = line([Tx(2) xt2],[Ty(2) yt2],'Color',col);%head
+line3 = line([xt1 xt2],[yt1 yt2],'Color',col);%shaft
 end
 

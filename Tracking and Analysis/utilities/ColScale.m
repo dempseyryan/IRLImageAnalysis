@@ -3,9 +3,9 @@ function [col] = ColScale(min,max,length)
 %   Detailed explanation goes here
 
 %if given infinity, return infinity
-if length == inf
+if isfinite(length) == false
   col = inf;
-  return
+  return;
 end
 
 %if the length given is greater or less than max, display an error and
@@ -56,6 +56,11 @@ if span == 0
     G = 0;
     R = 0;
 end
+% if isfinite(span) == false
+%     B = 0;
+%     G = 0;
+%     R = 1;
+% end
 col = [R G B];
 end
 
