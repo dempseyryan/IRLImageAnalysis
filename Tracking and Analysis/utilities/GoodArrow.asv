@@ -4,13 +4,9 @@ GoodArrow Takes in two points and returns the handles to the
 arrowheads and tail, for the arrow drawn from the first point to the second. 
    xt1, yt1: coordinates for first point
    xt2, yt2: coordinates for second point
-
-   head = 0 means the head is on the particle's current location. 
-   1 means the particle is touching the midpoint of the arrow, and 2 means
-   it's on the arrow's tail.
 %}
-%if given a nan, return
-if isnan(xt1) || isnan(yt1) || isnan(xt2) || isnan(yt2) || isnan(max(col)) 
+%if given an infinity, return
+if ~isfinite(xt1) || ~isfinite(yt1) || ~isfinite(xt2) || ~isfinite(yt2) || ~isfinite(max(col)) 
 
     line1 = 0;%if infinity make the supposed handles scalars 
     line2 = 0;%to signify arrow not drawn
@@ -27,20 +23,10 @@ if dilation ~= 0
     yt1 = yt1 + dilation*d2;
 
 end
-if head == 1%if particle needs to be in the midpoint, change the head location to accomodate
+if head == 1
     xt2 = 2*xt2 - xt1;
     yt2 = 2*yt2 - yt1;
-elseif head == 2%if it needs to be on the tail, change both the head and tail 
-    
-    newX = 2*xt2 - xt1;
-    newY = 2*yt2 - yt1;
-    
-    xt1 = xt2;
-    yt1 = yt2;
-    
-    xt2 = newX;
-    yt2 = newY;
-    
+elseif head == 2
     
 end
 angAt = atan((yt2-yt1)/(xt2-xt1));

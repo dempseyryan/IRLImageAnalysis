@@ -2,9 +2,9 @@ function [col] = ColScale(min,max,length)
 %UNTITLED3 Summary of this function goes here
 %   Detailed explanation goes here
 
-%if given infinity, return infinity
-if isfinite(length) == false
-  col = inf;
+%if given infinity, return nan
+if isnan(length) == true
+  col = NaN;
   return;
 end
 
