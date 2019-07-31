@@ -7,6 +7,8 @@ Install:
 	Computer Vision System
 	Image Processing
 
+  All the required original functions are included in the Utilities folder, 
+  and therefore utilities must be added to the MATLAB path in order to continue.
 
 Usage:
 
