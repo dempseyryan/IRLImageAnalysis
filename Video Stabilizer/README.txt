@@ -26,7 +26,7 @@ Usage:
 	A: PT Threshold can be adjusted in the main window.  It ranges from 0 to 1000.
 
 	Q: How do I change the ROI?
-	A: When the ROI button is clicked, the user will be prompted to create a rectangular ROI.
+	A: When the ROI button is clicked, the user will be prompted to create a rectangular ROI with the mouse.
 
 
 
