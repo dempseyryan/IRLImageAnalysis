@@ -1,4 +1,4 @@
-function [xc yc l h] = Helper(PrevPts,img,ROIsize,p);
+function [xc yc l h] = Helper(PrevPts,img,ROIsize,p)
  
 %load('PrevPoints.mat');
 xc = min(PrevPts(:,1))-50;

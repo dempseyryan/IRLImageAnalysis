@@ -1,4 +1,4 @@
-function [centx,centy,points] = EstimateCentroid(cx,cy,wx,wy,img,bfm);
+function [centx,centy,points] = EstimateCentroid(cx,cy,wx,wy,img,bfm)
 points.Count = 0;
 i = 0;
 I = imcrop(img,[cx-wx/2 cy-wy/2 wx wy]);
