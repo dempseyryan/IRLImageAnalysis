@@ -1,11 +1,11 @@
-function [NewPoints, removedPtBool] = TrackNext(img,ROIsize,TrackPoints,remPoints, maxTravel)
+function [NewPoints, removedPtNum] = TrackNext(img,ROIsize,TrackPoints,remPoints, maxTravel)
 %TrackNext Tracks points selected in SelectPoints for a different image
 %   TrackNext(img,TrackPoints). img: image to find points in, TrackPoints:
 %   points selected previously.
 %%%%%%%Faster to crop image in here, then send to estimate centroid?
 
 NewPoints = zeros(size(TrackPoints, 1), 2); % pre-sizing to increase computation speed
-removedPtBool = 0;
+removedPtNum = 0;
 for i = 1:size(TrackPoints,1)           %for each point in the list of points to track
     [px, py] = EstimateCentroid(TrackPoints(i,1),TrackPoints(i,2),ROIsize,ROIsize,img);
     b=0;
@@ -31,7 +31,7 @@ for i = 1:size(TrackPoints,1)           %for each point in the list of points to
         if remPoints == 1
             px = Inf;
             py = Inf;
-            removedPtBool = 1;
+            removedPtNum = removedPtNum + 1;
         else
             
             validInput = false;
