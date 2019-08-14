@@ -1,4 +1,4 @@
-function [NewPoints, removedPtNum] = TrackNext(img,ROIsize,TrackPoints,remPoints, maxTravel)
+function [NewPoints, removedPtNum] = TrackNext(img,ROIsize,TrackPoints,remPoints, maxTravel, increaseROINum)
 %TrackNext Tracks points selected in SelectPoints for a different image
 %   TrackNext(img,TrackPoints). img: image to find points in, TrackPoints:
 %   points selected previously.
@@ -10,7 +10,8 @@ for i = 1:size(TrackPoints,1)           %for each point in the list of points to
     [px, py] = EstimateCentroid(TrackPoints(i,1),TrackPoints(i,2),ROIsize,ROIsize,img);
     b=0;
     while (px == 0) && (py == 0) && b<3   %if the point can't be found, increase the ROI and search again
-        ROIsize = ROIsize+5;
+%         ROIsize = ROIsize+5;
+        ROIsize = ROIsize + increaseROINum/3;
         b=b+1;
         [px, py] = EstimateCentroid(TrackPoints(i,1),TrackPoints(i,2),ROIsize,ROIsize,img,b);
         fprintf('Can''t find point #%s. Trying again.\n',num2str(i));
