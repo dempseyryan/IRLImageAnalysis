@@ -21,7 +21,7 @@ if points.Count ~=0
         fprintf('finding BRISK instead\n');
         wcentx = points.selectStrongest(1).Location(1);
         wcenty = points.selectStrongest(1).Location(2);
-        figure(10);
+        figure('Visible', 'off');
         imshow(imgaussfilt(imadjust(I),1));
         hold on; plot(wcentx,wcenty,'X');
         pause(0.01);
