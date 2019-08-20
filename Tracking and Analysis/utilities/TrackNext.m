@@ -1,4 +1,4 @@
-function [NewPoints, removedPtNum, keepAskingBoolean] = TrackNext(img,ROIsize,TrackPoints,remPoints, maxTravel, increaseROINum)
+function [NewPoints, removedPtNum, keepAskingBoolean] = TrackNext(img,ROIsize,TrackPoints,remPoints, maxTravel, increaseROINum, soundOption)
 %TrackNext Tracks points selected in SelectPoints for a different image
 %   TrackNext(img,TrackPoints). img: image to find points in, TrackPoints:
 %   points selected previously.
@@ -50,6 +50,10 @@ for i = 1:size(TrackPoints,1)           %for each point in the list of points to
                     str = sprintf('Draw an ROI around point # %s.\n',num2str(i));
                     userCent2 = figure(3);
                     userCent2.WindowState = 'maximized';
+                    if soundOption
+                       beep on;
+                       beep
+                    end
                     [cpx, cpy, cpl, cph] = Helper(TrackPoints,img,ROIsize,i);
                     title(str);
                     rect = getrect(userCent2);
