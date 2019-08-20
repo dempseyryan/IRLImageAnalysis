@@ -1,8 +1,13 @@
-function [NewPoints, removedPtNum] = TrackNext(img,ROIsize,TrackPoints,remPoints, maxTravel, increaseROINum)
+function [NewPoints, removedPtNum, keepAskingBoolean] = TrackNext(img,ROIsize,TrackPoints,remPoints, maxTravel, increaseROINum)
 %TrackNext Tracks points selected in SelectPoints for a different image
 %   TrackNext(img,TrackPoints). img: image to find points in, TrackPoints:
 %   points selected previously.
 %%%%%%%Faster to crop image in here, then send to estimate centroid?
+if remPoints == 0
+    keepAskingBoolean = true;
+else
+    keepAskingBoolean = false;
+end
 
 NewPoints = zeros(size(TrackPoints, 1), 2); % pre-sizing to increase computation speed
 removedPtNum = 0;
@@ -55,13 +60,17 @@ for i = 1:size(TrackPoints,1)           %for each point in the list of points to
                     validInput = true;
                 catch
                     validInput = false;
-                    deletePointBool = questdlg('The point was not selected', 'User canceled point', 'Reselect point', 'Delete point', 'Reselect point');
+                    deletePointBool = questdlg('The point was not selected', 'User canceled point', 'Reselect point', 'Delete point', 'Delete all troublesome points and stop asking', 'Reselect point');
                     if strcmp(deletePointBool, 'Delete point')% if the point is very troublesome, perhaps ignore it going forward                        
                         tempx = px;
                         tempy = py;
                         px = Inf;
                         py = Inf;
                         validInput = true;
+                    elseif strcmp(deletePointBool, 'Delete all troublesome points and stop asking')
+                        px = Inf;
+                        py = Inf;
+                        keepAskingBoolean = false;
                     else
                        reselectBool = true; 
                     end
@@ -93,6 +102,7 @@ for i = 1:size(TrackPoints,1)           %for each point in the list of points to
         
         
     end
+    
     NewPoints(i,:) = [px py];
 end
 
