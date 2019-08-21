@@ -17,6 +17,7 @@ for i = 1:size(TrackPoints,1)           %for each point in the list of points to
     if increaseROINum ~= 0
     while (px == 0) && (py == 0) && b<3   %if the point can't be found, increase the ROI and search again
 %         ROIsize = ROIsize+5;
+        fprintf('Did not work...I think - this is a test ya goof!')
         ROIsize = ROIsize + increaseROINum/3;
         b=b+1;
         [px, py] = EstimateCentroid(TrackPoints(i,1),TrackPoints(i,2),ROIsize,ROIsize,img,b);
