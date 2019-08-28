@@ -29,6 +29,7 @@ if points.Count ~=0
         centy = sum(wcenty)+cy-wy/2;
       %  centx = double(round(centx));
       %  centy = double(round(centy));
+      close(gcf);
         return
     end
 end
