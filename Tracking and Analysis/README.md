@@ -34,15 +34,20 @@ The rest of the options are available for both types of data.
 
 Once displacements are loaded, you can view the image stack, as well as view the particles (in mosaic's case only the particles there in frame 1).
 
+Step size allows alternation of frames for the purpose of jitter reduction (for a smoother trajectory). A step size
+of one corresponds to using every frame and skipping none.
+
 Remove points lets you remove as many points as you'd like. It will display selected points in green and remove them when execute is pushed. In mosaic's case some points might not
 appear in frame 1 and therefore won't appear green in show points if selected for removal.
 
-For the video you can choose if you would like arrows to represent total displacment from the origin in frame 1 or frame-by-frame displacment (for frame by frame displacment you can also set
+For the video you can choose if you would like arrows to represent total displacement from the origin in frame 1 or frame-by-frame displacement (you can also set
 a dilation factor which will stretch the arrow to make it more visible).
 
 You can also choose either a frame-by-frame colour scale (the colour is scaled based on the largest frame-by-frame displacment in each frame) or 
 a total displacment colour scale (colour is scaled based on the largest displacement from the origin in the entire video).
 
-Arrow placements is what part of the arrow is on the particle which that arrow represents.
+Arrow placements determines which part of the arrow is on the particle which that arrow represents.
 
 Checking work in background hides the frame by frame video preview.
+
+Fix frame fixes the background to a still image of the first frame and creates a trajectory video on top of the one background
