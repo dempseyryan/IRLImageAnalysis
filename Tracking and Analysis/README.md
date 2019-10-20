@@ -12,8 +12,16 @@ You can look through the stack using the frame preview spinner, this also allows
 
 Save displacments is checked by default as this will save the tracking data.
 
-Remove points during tracking when checked, will ask the user if they would like to removed a particle
-after each time the wizard cannot find said particle and asks the user to manually find it.
+Remove points during tracking when checked will either ask the user if they would like to remove a bad point each time the tracker needs manual input, or it will automatically
+remove all points the tracker can not find, allowing the tracker to run uninterrupted until completion
+
+If "Notify me if too many points are being deleted" is selected then the tracker will pause the tracking if more than half of the points have been deleted.
+
+Bitshift will apply MATLAB's bitshift function to each image before tracking, using the value inputed
+
+Max ROI increase is the maximum amount the tracker will increase the ROI to search for a particle
+
+Max travel is the maximum distance the tracker will track a particle through without asking the user for input (if max travel is reached the tracker will ask the user to manually select the point)
 
 Start tracking begins the tracking, which will progress until completion or until the wizard cannot find a particle and asks the user to find it manually.
 
